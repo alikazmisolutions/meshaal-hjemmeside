@@ -1,6 +1,6 @@
 // Animated particle brain: scattered "thoughts" converge into a mind, then breathe,
 // pulse with synapse waves, react to the cursor and shift colour as the page scrolls.
-import * as THREE from './vendor/three.module.min.js';
+import * as THREE from './three.module.min.js';
 
 const canvas = document.getElementById('mind');
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
