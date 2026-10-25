@@ -250,6 +250,10 @@
   ::placeholder { color: var(--faint); }
   .form-foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; }
   .form-foot p { margin: 0; font-size: .9rem; color: var(--faint); }
+  .form-foot p.ok { color: var(--cyan); font-size: 1rem; }
+  .form-foot p.err { color: var(--rose); font-size: 1rem; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  form button[disabled] { opacity: .6; cursor: wait; }
 
   /* Footer with a wordmark that glows like a horizon */
   footer { position: relative; padding: 80px 0 36px; overflow: hidden; }
@@ -473,9 +477,10 @@
           </select>
         </div>
         <div class="field full"><label for="f-msg">Besked</label><textarea id="f-msg" name="message" placeholder="Hvad vil du gerne arbejde med, og hvornår passer det dig?"></textarea></div>
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="form-foot">
           <button type="submit" class="btn btn-glow magnetic">Send besked</button>
-          <p>Åbner dit mailprogram med beskeden udfyldt.</p>
+          <p id="form-status" role="status" aria-live="polite">Åbner dit mailprogram med beskeden udfyldt.</p>
         </div>
       </form>
     </div>
@@ -575,13 +580,56 @@
   const typeSelect = document.getElementById('f-type');
   document.querySelectorAll('[data-topic]').forEach(row => row.addEventListener('click', () => { typeSelect.value = row.dataset.topic; }));
 
-  // Form: opens the visitor's mail app with the message prefilled
-  document.getElementById('contact-form').addEventListener('submit', e => {
+  // Form: sends straight to Meshaal's inbox via Web3Forms. The access key is a
+  // public form key (it only lets this form deliver to that inbox), so it is
+  // safe in the page. Without a key the form falls back to the mail app.
+  const WEB3FORMS_KEY = '';
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+  const sendBtn = form.querySelector('button[type="submit"]');
+  if (WEB3FORMS_KEY) status.textContent = 'Beskeden sendes direkte til Meshaal.';
+  const setStatus = (text, cls) => { status.textContent = text; status.className = cls || ''; };
+
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     const f = e.target;
     if (!f.reportValidity()) return;
-    const body = `Navn: ${f.name.value}\nE-mail: ${f.email.value}\nTelefon: ${f.phone.value}\nInteresse: ${f.topic.value}\n\n${f.message.value}`;
-    location.href = `mailto:mindshiftcoach@hotmail.com?subject=${encodeURIComponent('Booking: ' + f.topic.value)}&body=${encodeURIComponent(body)}`;
+    const subject = 'Booking: ' + f.topic.value;
+
+    if (!WEB3FORMS_KEY) {
+      const body = `Navn: ${f.name.value}\nE-mail: ${f.email.value}\nTelefon: ${f.phone.value}\nInteresse: ${f.topic.value}\n\n${f.message.value}`;
+      location.href = `mailto:mindshiftcoach@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      return;
+    }
+
+    sendBtn.disabled = true;
+    setStatus('Sender beskeden …');
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject,
+          from_name: 'MindShiftCoach hjemmeside',
+          replyto: f.email.value,
+          Navn: f.name.value,
+          'E-mail': f.email.value,
+          Telefon: f.phone.value || '–',
+          Interesse: f.topic.value,
+          Besked: f.message.value || '–',
+          botcheck: f.botcheck.checked,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.success) throw new Error(data.message || res.status);
+      f.reset();
+      setStatus(`Tak! Din besked er sendt. Meshaal vender tilbage hurtigst muligt.`, 'ok');
+    } catch (err) {
+      setStatus('Beskeden kunne ikke sendes. Skriv i stedet til mindshiftcoach@hotmail.com eller ring på 53 76 17 28.', 'err');
+    } finally {
+      sendBtn.disabled = false;
+    }
   });
 </script>
 </body>
