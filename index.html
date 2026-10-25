@@ -17,8 +17,10 @@
 <meta property="og:locale" content="da_DK">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#05060f">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <link rel="preload" href="instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="instrument-serif-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="geist-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -102,8 +104,9 @@
   .site-header { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .5s, backdrop-filter .5s; }
   .site-header.solid { background: rgba(5, 6, 15, .55); backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%); box-shadow: 0 1px 0 var(--line); }
   .nav { display: flex; align-items: center; justify-content: space-between; height: 84px; }
-  .logo { display: flex; align-items: center; gap: 12px; font: 400 1.6rem/1 var(--serif); text-decoration: none; }
-  .logo i { width: 22px; height: 22px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff, var(--violet) 45%, transparent 72%); box-shadow: 0 0 18px var(--violet); }
+  .logo { display: flex; align-items: center; gap: 10px; font: 400 1.7rem/1 var(--serif); letter-spacing: -.01em; text-decoration: none; }
+  .logo img { width: 52px; height: 44px; filter: drop-shadow(0 0 10px rgba(161, 140, 255, .45)); }
+  .logo em { font-style: italic; background: var(--aurora); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .06em; }
   .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; margin: 0; padding: 0; font-size: .95rem; }
   .nav-links a { text-decoration: none; color: var(--muted); transition: color .3s; }
   .nav-links a:hover { color: var(--star); }
@@ -303,7 +306,7 @@
 
 <header class="site-header" id="top">
   <div class="wrap nav">
-    <a href="#top" class="logo"><i></i>MindShift</a>
+    <a href="#top" class="logo" aria-label="MindShift – til toppen"><img src="logo-hjerne.png" alt="" width="52" height="44"><span>Mind<em>Shift</em></span></a>
     <button class="menu-toggle" aria-label="Åbn menu" aria-expanded="false" aria-controls="nav-links">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 9h16M4 15h16"/></svg>
     </button>
