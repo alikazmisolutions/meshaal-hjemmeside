@@ -167,6 +167,11 @@
     @keyframes spin { to { transform: rotate(360deg); } }
   }
   .about h2 { margin-bottom: 32px; }
+  .recognize h2 { max-width: 14em; margin-bottom: 56px; }
+  .recognize-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(32px, 6vw, 90px); }
+  .recognize-list li { padding: 26px 0; border-top: 1px solid var(--line); font: 400 clamp(1.3rem, 2vw, 1.65rem)/1.3 var(--serif); }
+  .recognize-end { max-width: 34em; margin: 56px 0 0; font-size: 1.25rem; line-height: 1.55; color: var(--star); }
+  @media (max-width: 820px) { .recognize-list { grid-template-columns: 1fr; } }
   .about-text p { color: var(--muted); max-width: 33em; }
   .about-text p:first-of-type { color: var(--star); font-size: 1.25rem; line-height: 1.55; }
   .creds { display: flex; flex-wrap: wrap; gap: 10px; margin: 34px 0 0; padding: 0; list-style: none; }
@@ -326,14 +331,14 @@
       <div class="hero-bottom">
         <h1><span class="ln"><span>MindShift begynder</span></span><span class="ln"><span><em>i dit sind.</em></span></span></h1>
         <div class="hero-side">
-          <p>NLP- og ICF-coaching med Meshaal Haider. Et trygt rum til refleksion, indsigt og indre styrke – i Valby eller online.</p>
+          <p>Måske fungerer alt udadtil, mens noget indeni længes efter forandring. Her er der plads til at mærke, hvad du vil – og hjælp til at gå efter det.</p>
           <div class="btns">
             <a href="#kontakt" class="btn btn-glow magnetic">Book en session</a>
             <a href="#priser" class="btn btn-line">Se priser</a>
           </div>
         </div>
       </div>
-      <div class="hero-meta"><span class="scroll-cue">Scroll for at udforske</span><span>Vigerslev Allé 294, Valby</span></div>
+      <div class="hero-meta"><span class="scroll-cue">Scroll for at udforske</span><span>NLP- og ICF-coaching med Meshaal Haider, Valby</span></div>
     </div>
   </section>
 
@@ -351,6 +356,21 @@
     </div>
   </section>
 
+  <section class="section recognize">
+    <div class="wrap">
+      <h2 class="rise">Genkender du noget af det her?</h2>
+      <ul class="recognize-list">
+        <li>Du leverer, smiler og klarer det hele – men om aftenen er du tom.</li>
+        <li>Dine tanker kører i ring, også når du burde sove.</li>
+        <li>Du ved, at noget skal ændres, men ikke hvor du skal begynde.</li>
+        <li>Du siger ja, selvom alt i dig siger nej.</li>
+        <li>En indre stemme siger, at du ikke er god nok, og du er begyndt at tro på den.</li>
+        <li>Du står ved en skillevej og er bange for at vælge forkert.</li>
+      </ul>
+      <p class="recognize-end">Der er ikke noget galt med dig. Det, du tænker om dig selv, har du lært – og det, der er lært, kan ændres. Du skal bare ikke gøre det alene.</p>
+    </div>
+  </section>
+
   <section class="section about" id="om">
     <div class="wrap about-grid">
       <div class="planet">
@@ -360,9 +380,10 @@
       </div>
       <div class="about-text">
         <h2 class="rise">Hej, jeg hedder Meshaal</h2>
-        <p>Jeg hjælper dig med at forstå og ændre de tankemønstre, der styrer din adfærd – med teknikker fra Neuro-Lingvistisk Programmering.</p>
-        <p>Sammen finder vi de overbevisninger og blokeringer, der står i vejen, så du kan tage de første skridt mod den fremtid, du ønsker dig.</p>
-        <p>Jeg arbejder med visualisering, sprogmodeller og strategier til at ændre følelsesmæssige tilstande. Målet er et trygt rum, hvor du bliver set og hørt – og får redskaber til varige forandringer.</p>
+        <p>Jeg er ikke her for at fortælle dig, hvordan du skal leve dit liv. Jeg er her for at lytte til det, du siger – og til det, du endnu ikke har fundet ord for.</p>
+        <p>Som menneske er jeg nærværende, nysgerrig og oprigtigt optaget af den, der sidder over for mig. Du behøver ikke have styr på det hele, når du kommer, og du behøver ikke pynte på noget. Hos mig må du være, som du er – også på de dage, hvor alting føles tungt.</p>
+        <p>Som professionel står jeg på et solidt fundament. Jeg er NLP-mastercoach og ICF-coach og arbejder efter de etiske standarder fra International Coaching Federation. Med visualisering, sprogmodeller og strategier til at ændre følelsesmæssige tilstande hjælper jeg dig med at få øje på de tankemønstre, der har styret dig, og skabe nye, der passer til den, du er i dag.</p>
+        <p>Mit løfte til dig er enkelt: Du bliver set, du bliver hørt, og det, du fortæller, bliver mellem os. Svarene er dine egne. Jeg hjælper dig med at finde dem – og stole på dem.</p>
         <ul class="creds"><li>NLP-mastercoach</li><li>ICF-coach</li><li>Valby og online</li></ul>
       </div>
     </div>
@@ -372,28 +393,28 @@
     <div class="wrap">
       <div class="ways-head">
         <h2 class="rise">Tre måder at mødes på</h2>
-        <p class="muted">Alle sessioner varer 45 minutter og tilpasses dine behov, mål og udfordringer.</p>
+        <p class="muted">Det vigtigste er, at du føler dig tryg, så vælg det, der passer dig. Alle sessioner varer 45 minutter og tilpasses det, du står i.</p>
       </div>
-      <div class="way"><h3>I Valby</h3><p>Et roligt rum på Vigerslev Allé, skabt til at give slip og finde ro.</p><span class="price">995 kr</span></div>
-      <div class="way"><h3>Online</h3><p>Arbejd med dine mål hjemmefra – fleksibelt og nemt at passe ind i hverdagen.</p><span class="price">895 kr</span></div>
-      <div class="way"><h3>Telefonisk</h3><p>En samtale over telefonen – uden skærm, så du kan tale frit, hvor du er.</p><span class="price">895 kr</span></div>
+      <div class="way"><h3>I Valby</h3><p>Et roligt rum på Vigerslev Allé, hvor hverdagen bliver udenfor. Her kan du trække vejret, give slip og være helt til stede.</p><span class="price">995 kr</span></div>
+      <div class="way"><h3>Online</h3><p>Mød mig fra dit eget hjem, hvor du allerede føler dig tryg. Nærværet er det samme, og transporten slipper du for.</p><span class="price">895 kr</span></div>
+      <div class="way"><h3>Telefonisk</h3><p>Nogle ting er lettere at sige, når ingen kigger på. Over telefonen kan du lukke øjnene, gå en tur eller sidde, hvor du har det bedst.</p><span class="price">895 kr</span></div>
     </div>
   </section>
 
   <section class="section" id="forloeb">
     <div class="wrap process-grid">
       <div class="process-intro">
-        <h2 class="rise">Fra afklaring til handling</h2>
-        <p class="muted">Et struktureret forløb i seks trin, der giver dig overblik – og plads til at gå i dybden, hvor det betyder mest.</p>
+        <h2 class="rise">En vej, du ikke skal gå alene</h2>
+        <p class="muted">Forandring sker sjældent på én gang. Derfor følger vi et forløb i seks trin, der giver dig overblik og tryghed – med plads til at gå i dybden, hvor det betyder mest.</p>
       </div>
       <ol class="steps" id="steps">
         <li class="fill" aria-hidden="true"></li>
-        <li class="step"><span class="step-n">Trin 1</span><h3>Opstart</h3><p>Vi lærer hinanden at kende og afstemmer rammer og forventninger.</p></li>
-        <li class="step"><span class="step-n">Trin 2</span><h3>Målafklaring</h3><p>Vi sætter ord på, hvad du vil opnå – og hvorfor det er vigtigt for dig.</p></li>
-        <li class="step"><span class="step-n">Trin 3</span><h3>Udforskning og indsigt</h3><p>Gennem spørgsmål og refleksion undersøger vi tanker, mønstre og ressourcer.</p></li>
-        <li class="step"><span class="step-n">Trin 4</span><h3>Muligheder og valg</h3><p>Nye perspektiver åbner nye veje, så du kan vælge bevidst.</p></li>
-        <li class="step"><span class="step-n">Trin 5</span><h3>Handling</h3><p>Du formulerer konkrete skridt og forpligter dig til dem – i dit tempo.</p></li>
-        <li class="step"><span class="step-n">Trin 6</span><h3>Evaluering og afslutning</h3><p>Vi ser på din udvikling og sikrer, at forandringen holder.</p></li>
+        <li class="step"><span class="step-n">Trin 1</span><h3>Opstart</h3><p>Vi lærer hinanden at kende i dit tempo. Du fortæller, hvad der fylder, og vi aftaler rammerne, så du ved, hvad du kan forvente.</p></li>
+        <li class="step"><span class="step-n">Trin 2</span><h3>Målafklaring</h3><p>Vi sætter ord på, hvad du længes efter, og hvorfor det betyder noget for netop dig.</p></li>
+        <li class="step"><span class="step-n">Trin 3</span><h3>Udforskning og indsigt</h3><p>Vi undersøger de tanker og mønstre, der har holdt dig tilbage – og de styrker, du måske har glemt, at du har.</p></li>
+        <li class="step"><span class="step-n">Trin 4</span><h3>Muligheder og valg</h3><p>Når du ser din situation fra nye vinkler, opstår der veje, du ikke kunne se før. Du vælger selv, hvilken der er din.</p></li>
+        <li class="step"><span class="step-n">Trin 5</span><h3>Handling</h3><p>Du omsætter indsigt til konkrete skridt, der passer til dit liv. Små nok til, at du tør tage dem. Store nok til, at de gør en forskel.</p></li>
+        <li class="step"><span class="step-n">Trin 6</span><h3>Evaluering og afslutning</h3><p>Vi ser tilbage på, hvor langt du er kommet, og sikrer, at du har det, der skal til for at fortsætte på egen hånd.</p></li>
       </ol>
     </div>
   </section>
@@ -401,10 +422,10 @@
   <section class="section what">
     <div class="wrap">
       <h2 class="rise">Hvad er coaching?</h2>
-      <p class="big">En målrettet og struktureret samtale, hvor dine egne ressourcer, svar og beslutninger er i centrum.</p>
+      <p class="big">En samtale, hvor du endelig får plads til at høre dig selv tænke.</p>
       <div class="cols">
-        <p>Gennem spørgsmål, refleksion og feedback får du mere selvindsigt, klarhed over dine mål og mod til at tage de næste skridt. Coaching kan bruges til fx karriereudvikling, stresshåndtering, livsbalance og personlig vækst.</p>
-        <p>Som ICF-coach arbejder jeg efter de internationale etiske standarder og principper fastlagt af International Coaching Federation – herunder fuld fortrolighed.</p>
+        <p>Gennem nærværende spørgsmål, refleksion og ærlig feedback får du mere selvindsigt, klarhed over, hvad du vil, og mod til at tage de næste skridt. Det er dine egne ressourcer, svar og beslutninger, der er i centrum. Coaching kan bruges til fx karriereudvikling, stresshåndtering, livsbalance og personlig vækst.</p>
+        <p>Det kræver tillid at åbne op. Derfor arbejder jeg efter de internationale etiske standarder og principper fra International Coaching Federation, og det, du fortæller, behandles fortroligt.</p>
       </div>
     </div>
   </section>
@@ -413,7 +434,7 @@
     <div class="wrap">
       <div class="pricing-head">
         <h2 class="rise">Priser</h2>
-        <p class="muted">Alle sessioner er 45 minutter. Med et klippekort betaler du mindre pr. gang.</p>
+        <p class="muted">En investering i dig selv og i den måde, du har det på i hverdagen. Alle sessioner varer 45 minutter, og med et klippekort får du et sammenhængende forløb til en lavere pris pr. gang.</p>
       </div>
       <div class="price-cols">
         <div class="price-col">
@@ -432,7 +453,7 @@
           <a class="price-row" href="#kontakt" data-topic="Klippekort 10 sessioner – online eller telefon (8.050 kr)"><strong>10 sessioner</strong><span class="amount">8.050 kr</span><span class="detail">Spar 900 kr, brug dem online eller over telefon</span><span class="book">Book</span></a>
         </div>
       </div>
-      <p class="price-foot">I tvivl om, hvad der passer dig? <a href="#kontakt">Skriv til mig</a></p>
+      <p class="price-foot">I tvivl om, hvad der passer dig? <a href="#kontakt">Skriv til mig</a>, så finder vi ud af det sammen.</p>
     </div>
   </section>
 
@@ -443,9 +464,10 @@
         <p>Kan du ikke finde svaret? Ring på <a href="tel:+4553761728">53 76 17 28</a>.</p>
       </div>
       <div class="faq">
-        <details open><summary>Hvad sker der i den første session?</summary><p>Vi lærer hinanden at kende og afstemmer forventninger. Du fortæller, hvad du gerne vil arbejde med, og sammen afklarer vi dine mål og rammerne for forløbet.</p></details>
-        <details><summary>Hvad er forskellen på coaching og terapi?</summary><p>Coaching er fremadrettet og fokuserer på dine mål, ressourcer og handlinger. Det er dine egne svar og beslutninger, der er i centrum.</p></details>
-        <details><summary>Er det, jeg fortæller, fortroligt?</summary><p>Ja. Som ICF-coach følger jeg International Coaching Federations etiske retningslinjer, som blandt andet omfatter fortrolighed.</p></details>
+        <details open><summary>Hvad sker der i den første session?</summary><p>Du behøver ikke forberede noget eller have fundet de rigtige ord. Vi lærer hinanden at kende, du fortæller, hvad der fylder, og sammen afklarer vi, hvad du gerne vil have ud af forløbet.</p></details>
+        <details><summary>Jeg ved ikke præcis, hvad jeg vil arbejde med. Kan jeg godt komme?</summary><p>Ja. En fornemmelse af, at noget skal ændres, er nok at begynde med. At finde ud af, hvad det er, er en del af arbejdet.</p></details>
+        <details><summary>Hvad er forskellen på coaching og terapi?</summary><p>Coaching er fremadrettet og fokuserer på dine mål, ressourcer og handlinger. Det er dine egne svar og beslutninger, der er i centrum. Står du i noget, der kræver behandling, er coaching ikke det rette sted at begynde, og så siger jeg det ærligt.</p></details>
+        <details><summary>Er det, jeg fortæller, fortroligt?</summary><p>Ja. Du skal kunne tale frit. Som ICF-coach følger jeg International Coaching Federations etiske retningslinjer, som blandt andet omfatter fortrolighed.</p></details>
         <details><summary>Hvor længe gælder et klippekort?</summary><p>Klippekort med 5 sessioner i Valby gælder i 12 måneder, og klippekort med 10 sessioner gælder i 24 måneder.</p></details>
         <details><summary>Hvor foregår de personlige sessioner?</summary><p>På Vigerslev Allé 294, 2500 Valby – i et roligt rum indrettet til ro og refleksion.</p></details>
       </div>
@@ -456,7 +478,7 @@
     <div class="wrap contact-grid">
       <div>
         <h2 class="rise">Tag det første skridt</h2>
-        <p class="muted">Skriv kort, hvad du gerne vil arbejde med, så vender jeg tilbage med et forslag til tid.</p>
+        <p class="muted">Det første skridt er ofte det sværeste, og du behøver ikke have alle svarene, før du skriver. Fortæl kort, hvad der fylder, så vender jeg tilbage med et forslag til tid.</p>
         <ul class="contact-list">
           <li><span>E-mail</span><a href="mailto:mindshiftcoach@hotmail.com">mindshiftcoach@hotmail.com</a></li>
           <li><span>Telefon</span><a href="tel:+4553761728">+45 53 76 17 28</a></li>
@@ -479,7 +501,7 @@
             <option>Jeg har et spørgsmål</option>
           </select>
         </div>
-        <div class="field full"><label for="f-msg">Besked</label><textarea id="f-msg" name="message" placeholder="Hvad vil du gerne arbejde med, og hvornår passer det dig?"></textarea></div>
+        <div class="field full"><label for="f-msg">Besked</label><textarea id="f-msg" name="message" placeholder="Skriv det, du har lyst til. Hvad fylder hos dig, og hvornår passer det dig?"></textarea></div>
         <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="form-foot">
           <button type="submit" class="btn btn-glow magnetic">Send besked</button>
