@@ -103,7 +103,14 @@
   /* Header */
   .site-header { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .5s, backdrop-filter .5s; }
   .site-header.solid { background: rgba(5, 6, 15, .55); backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%); box-shadow: 0 1px 0 var(--line); }
-  .nav { display: flex; align-items: center; justify-content: space-between; height: 84px; }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 84px; }
+  .nav > .logo { margin-right: auto; flex: none; }
+  .nav-links { order: 2; }
+  .lang { order: 3; display: inline-flex; flex: none; padding: 3px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); background: rgba(255,255,255,.03); }
+  .lang button { border: 0; background: none; color: var(--muted); font: 500 .8rem/1 var(--sans); letter-spacing: .04em; padding: 8px 11px; border-radius: 999px; cursor: pointer; transition: color .3s, background .3s; }
+  .lang button:hover { color: var(--star); }
+  .lang button[aria-pressed="true"] { background: var(--star); color: var(--space); }
+  .menu-toggle { order: 4; }
   .logo { display: flex; align-items: center; gap: 10px; font: 400 1.7rem/1 var(--serif); letter-spacing: -.01em; text-decoration: none; }
   .logo img { width: 52px; height: 44px; filter: drop-shadow(0 0 10px rgba(161, 140, 255, .45)); }
   .logo em { font-style: italic; background: var(--aurora); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .06em; }
@@ -275,6 +282,17 @@
   .js .rise.in { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { .js .rise { opacity: 1; transform: none; } }
 
+  @media (max-width: 1100px) {
+    .nav { gap: 16px; }
+    .nav-links { gap: 20px; }
+    .nav-links .btn { padding: 11px 14px; }
+    .nav-links a { white-space: nowrap; }
+    .nav-links .dot { display: none; }
+  }
+  @media (max-width: 900px) {
+    .nav { padding-inline: 24px; gap: 12px; }
+    .nav-links { gap: 14px; font-size: .9rem; }
+  }
   @media (max-width: 1000px) {
     .about-grid, .process-grid, .faq-grid, .contact-grid, .price-cols { grid-template-columns: 1fr; }
     .process-intro { position: static; }
@@ -312,6 +330,10 @@
 <header class="site-header" id="top">
   <div class="wrap nav">
     <a href="#top" class="logo" aria-label="MindShift – til toppen"><img src="logo-hjerne.png" alt="" width="52" height="44"><span>Mind<em>Shift</em></span></a>
+    <div class="lang" role="group" aria-label="Vælg sprog">
+      <button type="button" data-lang="da" lang="da" aria-pressed="true">DA</button>
+      <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
+    </div>
     <button class="menu-toggle" aria-label="Åbn menu" aria-expanded="false" aria-controls="nav-links">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 9h16M4 15h16"/></svg>
     </button>
@@ -526,6 +548,7 @@
 
 <script src="lenis.min.js"></script>
 <script type="module" src="mind.js"></script>
+<script src="i18n.js"></script>
 <script>
   document.documentElement.classList.add('js');
   // always open on the hero so the mind's opening animation is seen
@@ -596,7 +619,7 @@
   const setMenu = open => {
     links.classList.toggle('open', open);
     toggle.setAttribute('aria-expanded', open);
-    toggle.setAttribute('aria-label', open ? 'Luk menu' : 'Åbn menu');
+    toggle.setAttribute('aria-label', i18n.t(open ? 'Luk menu' : 'Åbn menu'));
   };
   toggle.addEventListener('click', () => setMenu(!links.classList.contains('open')));
   links.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
@@ -612,8 +635,17 @@
   const form = document.getElementById('contact-form');
   const status = document.getElementById('form-status');
   const sendBtn = form.querySelector('button[type="submit"]');
-  if (WEB3FORMS_KEY) status.textContent = 'Beskeden sendes direkte til Meshaal.';
-  const setStatus = (text, cls) => { status.textContent = text; status.className = cls || ''; };
+  let statusText = '';
+  const setStatus = (text, cls) => { statusText = text; status.textContent = i18n.t(text); status.className = cls || ''; };
+  if (WEB3FORMS_KEY) setStatus('Beskeden sendes direkte til Meshaal.');
+
+  // Re-apply what the page sets itself, and let layout-dependent parts (the 3D mind, scroll effects) re-measure
+  document.addEventListener('langchange', () => {
+    if (statusText) setStatus(statusText, status.className);
+    setMenu(links.classList.contains('open'));
+    dispatchEvent(new Event('resize'));
+    onScroll();
+  });
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
@@ -643,6 +675,7 @@
           Telefon: f.phone.value || '–',
           Interesse: f.topic.value,
           Besked: f.message.value || '–',
+          ...(i18n.lang === 'en' ? { Sprog: 'Engelsk (skrev fra den engelske version af siden)' } : {}),
           botcheck: f.botcheck.checked,
         }),
       });
